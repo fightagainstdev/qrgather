@@ -12,15 +12,31 @@ export const LocalStorageKey = defineEnum({
 });
 
 export function setLocalStorageItem(key: LocalStorageKey, value: string, postfix?: string) {
-  localStorage.setItem(LOCAL_STORAGE_PREFIX + "." + key + (postfix ? "." + postfix : ""), value);
+  try {
+    localStorage.setItem(LOCAL_STORAGE_PREFIX + "." + key + (postfix ? "." + postfix : ""), value);
+  } catch (e) {
+    // Ignore localStorage errors (e.g., in iframe or private browsing)
+    console.warn('localStorage access denied:', e);
+  }
 }
 
 export function getLocalStorageItem(key: LocalStorageKey, postfix?: string) {
-  return localStorage.getItem(LOCAL_STORAGE_PREFIX + "." + key + (postfix ? "." + postfix : ""));
+  try {
+    return localStorage.getItem(LOCAL_STORAGE_PREFIX + "." + key + (postfix ? "." + postfix : ""));
+  } catch (e) {
+    // Ignore localStorage errors (e.g., in iframe or private browsing)
+    console.warn('localStorage access denied:', e);
+    return null;
+  }
 }
 
 export function removeLocalStorageItem(key: LocalStorageKey, postfix?: string) {
-  localStorage.removeItem(LOCAL_STORAGE_PREFIX + "." + key + (postfix ? "." + postfix : ""));
+  try {
+    localStorage.removeItem(LOCAL_STORAGE_PREFIX + "." + key + (postfix ? "." + postfix : ""));
+  } catch (e) {
+    // Ignore localStorage errors (e.g., in iframe or private browsing)
+    console.warn('localStorage access denied:', e);
+  }
 }
 
 export function getArrayFromStorage(key: LocalStorageKey) {
