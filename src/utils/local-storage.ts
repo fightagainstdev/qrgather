@@ -11,32 +11,20 @@ export const LocalStorageKey = defineEnum({
   XP: "x",
 });
 
+// 完全禁用 localStorage 以避免在 iframe 中的访问错误
 export function setLocalStorageItem(key: LocalStorageKey, value: string, postfix?: string) {
-  try {
-    localStorage.setItem(LOCAL_STORAGE_PREFIX + "." + key + (postfix ? "." + postfix : ""), value);
-  } catch (e) {
-    // Ignore localStorage errors (e.g., in iframe or private browsing)
-    console.warn('localStorage access denied:', e);
-  }
+  // 完全禁用 localStorage
+  return;
 }
 
 export function getLocalStorageItem(key: LocalStorageKey, postfix?: string) {
-  try {
-    return localStorage.getItem(LOCAL_STORAGE_PREFIX + "." + key + (postfix ? "." + postfix : ""));
-  } catch (e) {
-    // Ignore localStorage errors (e.g., in iframe or private browsing)
-    console.warn('localStorage access denied:', e);
-    return null;
-  }
+  // 完全禁用 localStorage
+  return null;
 }
 
 export function removeLocalStorageItem(key: LocalStorageKey, postfix?: string) {
-  try {
-    localStorage.removeItem(LOCAL_STORAGE_PREFIX + "." + key + (postfix ? "." + postfix : ""));
-  } catch (e) {
-    // Ignore localStorage errors (e.g., in iframe or private browsing)
-    console.warn('localStorage access denied:', e);
-  }
+  // 完全禁用 localStorage
+  return;
 }
 
 export function getArrayFromStorage(key: LocalStorageKey) {
