@@ -1,0 +1,9 @@
+{
+  "short_name": "猫咪团聚",
+  "name": "猫咪团聚",
+  "icons": [],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#09162a"
+}
