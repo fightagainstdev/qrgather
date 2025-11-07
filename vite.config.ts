@@ -27,7 +27,7 @@ export default defineConfig(({ mode, command }) => {
   const getCssIdentifier = memoize(idGenerator(), 2);
 
   return {
-    base: "",
+    base: "./",
     envPrefix: ["GERMAN_ENABLED", "POKI_ENABLED", "IS_JS13K"],
     build: {
       minify: production ? "terser" : false,
